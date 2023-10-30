@@ -146,10 +146,11 @@
 			};
 			buildConfigurationList = 2187408B164FC3830060F761 /* Build configuration list for PBXProject "SASMegaRAID" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 21874086164FC3830060F761;
 			productRefGroup = 21874094164FC3830060F761 /* Products */;
@@ -265,8 +266,10 @@
 				GCC_PREFIX_HEADER = "SASMegaRAID/SASMegaRAID-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "SASMegaRAID/SASMegaRAID-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MODULE_NAME = cc.dukzcry.SASMegaRAID;
 				MODULE_VERSION = 1.0.0d1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.apple.driver.SASMegaRAID;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VALID_ARCHS = "x86_64 i386";
 				WRAPPER_EXTENSION = kext;
@@ -285,8 +288,10 @@
 				GCC_PREFIX_HEADER = "SASMegaRAID/SASMegaRAID-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "SASMegaRAID/SASMegaRAID-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MODULE_NAME = cc.dukzcry.SASMegaRAID;
 				MODULE_VERSION = 1.0.0d1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.apple.driver.SASMegaRAID;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VALID_ARCHS = "x86_64 i386";
 				WRAPPER_EXTENSION = kext;
