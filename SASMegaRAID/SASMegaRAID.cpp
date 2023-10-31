@@ -1186,6 +1186,7 @@ UInt32 SASMegaRAID::MRAID_Read(UInt8 offset)
     
     return OSReadLittleInt32(vAddr, offset);
 }
+
 void SASMegaRAID::MRAID_Write(UInt8 offset, UInt32 data)
 {
     //DbgPrint("%s: offset %#x data 0x%08x\n", __FUNCTION__, offset, data);

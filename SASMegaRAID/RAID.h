@@ -5,9 +5,80 @@
 #include <miscfs/devfs/devfs.h>
 
 #define SPECNAMELEN      63
-#include <dev/mfi/mfi_ioctl.h>
+//#include <dev/mfi/mfi_ioctl.h>
 
 #include "SASMegaRAID.h"
+
+#define MFIIO_PASSTHRU      _IOWR('C', 102, struct mfi_ioc_passthru)
+#define MFIIO_QUERY_DISK    _IOWR('Q', 102, struct mfi_query_disk)
+#define MFI_MBOX_SIZE       12
+//#define MFI_DCMD_FRAME_SIZE 40
+
+/* Scatter Gather elements */
+struct mfi_sg32 {
+    uint32_t    addr;
+    uint32_t    len;
+} __packed;
+
+struct mfi_sg64 {
+    uint64_t    addr;
+    uint32_t    len;
+} __packed;
+
+struct mfi_sg_skinny {
+    uint64_t    addr;
+    uint32_t    len;
+    uint32_t    flag;
+} __packed;
+
+union mfi_sgl {
+    struct mfi_sg32        sg32[1];
+    struct mfi_sg64        sg64[1];
+    struct mfi_sg_skinny    sg_skinny[1];
+} __packed;
+
+struct mfi_frame_header {
+    uint8_t        cmd;
+    uint8_t        sense_len;
+    uint8_t        cmd_status;
+    uint8_t        scsi_status;
+    uint8_t        target_id;
+    uint8_t        lun_id;
+    uint8_t        cdb_len;
+    uint8_t        sg_count;
+    uint32_t    context;
+    /*
+     * pad0 is MSI Specific. Not used by Driver. Zero the value before
+     * sending the command to f/w.
+     */
+    uint32_t    pad0;
+    uint16_t    flags;
+#define MFI_FRAME_DATAOUT   0x08
+#define MFI_FRAME_DATAIN    0x10
+    uint16_t    timeout;
+    uint32_t    data_len;
+} __packed;
+
+struct mfi_dcmd_frame {
+    struct mfi_frame_header header;
+    uint32_t    opcode;
+    uint8_t        mbox[MFI_MBOX_SIZE];
+    union mfi_sgl    sgl;
+} __packed;
+
+struct mfi_query_disk {
+    uint8_t    array_id;
+    uint8_t    present;
+    uint8_t    open;
+    uint8_t reserved;    /* reserved for future use */
+    char    devname[SPECNAMELEN + 1];
+} __packed;
+
+struct mfi_ioc_passthru {
+    struct mfi_dcmd_frame    ioc_frame;
+    uint32_t        buf_size;
+    uint8_t            *buf;
+} __packed;
 
 class RAID *RAIDP;
 class RAID {

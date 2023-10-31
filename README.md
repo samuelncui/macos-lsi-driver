@@ -1,3 +1,9 @@
+# Porting FreeBSD LSI MPT2 Driver to macOS (WIP)
+
+I'm trying to port FreeBSD LSI MPT2 Controller (eg lsi2308) driver to macOS, slowly. **This project is not working at all at this moment.**
+
+## Original Readme
+
 [![Build Status](https://travis-ci.org/dukzcry/osx-goodies.svg?branch=master)](https://travis-ci.org/dukzcry/osx-goodies)
 
 I/O Kit driver for LSI MegaRAID SAS family of hardware RAID controllers, which isn't supported by proprietary MegaRAID.kext (PPC) and AppleLSIFusionMPT.kext or AppleRAIDCard.kext (x86). This driver is Xcode project, for macOS.
