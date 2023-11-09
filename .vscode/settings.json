@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "__locale": "cpp",
+        "__mutex_base": "cpp"
+    },
+    "C_Cpp.errorSquiggles": "enabled"
+}
